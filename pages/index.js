@@ -48,7 +48,7 @@ const Home = () => {
     getListUsers(page, count, national).then((data) => {
       setData(data.data);
     });
-  }, [national, page]);
+  }, [count, national, page]);
 
   return (
     <Layout>

@@ -2,7 +2,8 @@ import { Card, Col } from "antd";
 import React, { useState } from "react";
 import Image from "next/image";
 import moment from "moment";
-import ModalDetail from "./ModalDetail";
+import dynamic from "next/dynamic";
+const ModalDetailComponent = dynamic(() => import("./ModalDetail"));
 
 const { Meta } = Card;
 const formatTime = "DD/MM/YYYY HH:mm:ss";
@@ -10,7 +11,7 @@ const formatTime = "DD/MM/YYYY HH:mm:ss";
 const ListUsers = ({ userData }) => {
   const [sendOpen, setSendOpen] = useState(false);
   const [idDetail, setIdDetail] = useState(null);
-  console.log(idDetail);
+
   const detailData = userData.find((data) => {
     return data.id.value === idDetail;
   });
@@ -62,7 +63,7 @@ const ListUsers = ({ userData }) => {
             <br></br>
             <span>{moment(data.dob.date).format(formatTime)}</span>
           </Card>
-          <ModalDetail
+          <ModalDetailComponent
             openModal={sendOpen}
             closeModal={closeModals}
             detailData={detailData}

@@ -1,11 +1,12 @@
 import { Layout, Row, Select, Button } from "antd";
-import ListUsers from "../components/ListUsers";
 import { useEffect, useState } from "react";
 import getListUsers from "./api/getData";
-import Loading from "../components/Loading";
+import dynamic from "next/dynamic";
+const ListUsersComponent = dynamic(() => import("../components/ListUsers"));
+const LoadingComponent = dynamic(() => import("../components/Loading"));
 const { Header, Footer, Content } = Layout;
-
 const { Option } = Select;
+
 const Home = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ const Home = () => {
           style={{ padding: 0 }}
         />
         {data === null ? (
-          <Loading />
+          <LoadingComponent />
         ) : (
           <>
             <Content style={{ margin: "24px 16px 0" }}>
@@ -82,10 +83,10 @@ const Home = () => {
                 </Select>
               </div>
               <Row>
-                <ListUsers userData={data} />
+                <ListUsersComponent userData={data} />
               </Row>
             </Content>
-            {loading && <Loading />}
+            {loading && <LoadingComponent />}
             <Footer style={{ textAlign: "center" }}>
               <Button onClick={onChange}>Load More...</Button>
             </Footer>

@@ -1,16 +1,13 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { Layout, Row, Col, Select, Pagination, Button } from "antd";
+import { Layout, Row, Select, Button } from "antd";
 import ListUsers from "../components/ListUsers";
 import { useEffect, useState } from "react";
 import getListUsers from "./api/getData";
 import Loading from "../components/Loading";
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const { Option } = Select;
 const Home = () => {
   const [data, setData] = useState(null);
-  const [previousData, setPreviousData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);

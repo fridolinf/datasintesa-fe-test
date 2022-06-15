@@ -1,9 +1,8 @@
 import { Modal } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
 const ModalDetail = ({ openModal, closeModal, detailData }) => {
-  console.log(detailData, "detailsData");
   return (
     <div>
       <Modal
@@ -12,7 +11,6 @@ const ModalDetail = ({ openModal, closeModal, detailData }) => {
         } ${detailData ? detailData.name.last : ""}`}
         centered
         visible={openModal}
-        // onOk={() => setModal2Visible(false)}
         onCancel={closeModal}
         footer={null}
       >

@@ -2,8 +2,6 @@ import axios from "axios";
 import api from "../utils/baseUrl";
 import { Header } from "../utils/Headers";
 
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 const getListUsers = async (page, count, nat) => {
   try {
     const data = await axios.get(
@@ -37,16 +35,5 @@ const getListUsers = async (page, count, nat) => {
     };
   }
 };
-
-// const getListUsers = async (page, count) => {
-//   try {
-//     const resp = await axios.get(
-//       `${api.BASE_URL}+${api.ENDPOINT} + ?page=${page} + ?results=${count}`
-//     );
-//     return resp;
-//   } catch (err) {
-//     return err;
-//   }
-// };
 
 export default getListUsers;

@@ -1,4 +1,4 @@
-import { Avatar, Card, Skeleton, Switch, Row, Col } from "antd";
+import { Card, Col } from "antd";
 import React, { useState } from "react";
 import Image from "next/image";
 import moment from "moment";

@@ -1,6 +1,6 @@
 import axios from "axios";
 import api from "../utils/baseUrl";
-import { Header } from "../utils/Headers";
+import { Header } from "../utils/headers";
 
 const getListUsers = async (page, count, nat) => {
   try {

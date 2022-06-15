@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ant-modal-title {
+  text-align: center;
+  font-size: 2rem !important;
+  font-weight: bolder !important;
+}

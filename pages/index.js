@@ -57,41 +57,37 @@ const Home = () => {
           className="site-layout-sub-header-background"
           style={{ padding: 0 }}
         />
-        {data === null ? (
-          <LoadingComponent />
-        ) : (
-          <>
-            <Content style={{ margin: "24px 16px 0" }}>
-              <div
+        <>
+          <Content style={{ margin: "24px 16px 0" }}>
+            <div
+              style={{
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <Select
+                defaultValue={[nat[0]]}
                 style={{
-                  justifyContent: "center",
-                  display: "flex",
+                  width: 200,
                 }}
+                onSelect={selectNat}
               >
-                <Select
-                  defaultValue={[nat[0]]}
-                  style={{
-                    width: 200,
-                  }}
-                  onSelect={selectNat}
-                >
-                  {nat.map((data, i) => (
-                    <Option key={i} value={data}>
-                      {data}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-              <Row>
-                <ListUsersComponent userData={data} />
-              </Row>
-            </Content>
-            {loading && <LoadingComponent />}
-            <Footer style={{ textAlign: "center" }}>
-              <Button onClick={onChange}>Load More...</Button>
-            </Footer>
-          </>
-        )}
+                {nat.map((data, i) => (
+                  <Option key={i} value={data}>
+                    {data}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+            <Row>
+              <ListUsersComponent userData={data} />
+            </Row>
+          </Content>
+          {loading && <LoadingComponent />}
+          <Footer style={{ textAlign: "center" }}>
+            <Button onClick={onChange}>Load More</Button>
+          </Footer>
+        </>
       </Layout>
     </Layout>
   );

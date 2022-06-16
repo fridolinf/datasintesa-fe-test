@@ -12,6 +12,7 @@ const ModalDetail = ({ openModal, closeModal, detailData }) => {
         centered
         visible={openModal}
         onCancel={closeModal}
+        destroyOnClose={true}
         footer={null}
       >
         <div style={{ justifyContent: "center", display: "flex" }}>

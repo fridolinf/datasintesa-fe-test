@@ -2,10 +2,10 @@ import axios from "axios";
 import api from "../../utils/baseUrl";
 import { Header } from "../../utils/headers";
 
-const getListUsers = async (page, count, nat) => {
+const getListUsers = async (page, nat) => {
   try {
     const data = await axios.get(
-      `${api.BASE_URL}?page=${page}&results=${count}&nat=${nat}`,
+      `${api.BASE_URL}?page=${page}&results=10&nat=${nat}`,
       Header()
     );
     if (data.status === 200) {

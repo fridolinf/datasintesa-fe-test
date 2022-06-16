@@ -1,4 +1,4 @@
-import { Layout, Row, Select, Button } from "antd";
+import { Layout, Row, Select } from "antd";
 import { useEffect, useState } from "react";
 import getListUsers from "./api/getData";
 import dynamic from "next/dynamic";
@@ -7,11 +7,19 @@ const LoadingComponent = dynamic(() => import("../components/Loading"));
 const { Header, Footer, Content } = Layout;
 const { Option } = Select;
 
+const getScrollDownPercentage = (window) => {
+  const pageHeight = window.document.documentElement.scrollHeight;
+  const clientHeight = window.document.documentElement.clientHeight;
+  const scrollPos = window.pageYOffset;
+  const currentPosition = scrollPos + clientHeight;
+  const percentageScrolled = currentPosition / pageHeight;
+  return percentageScrolled;
+};
+
 const Home = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(10);
   const [nat, setNat] = useState([
     "AU",
     "BR",
@@ -32,23 +40,40 @@ const Home = () => {
     "US",
   ]);
   const [national, setNational] = useState("AU");
-  const onChange = (page) => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setCount(count + 10);
-      setPage(page);
-    }, 500);
-  };
+
   const selectNat = (val) => {
+    setData(null);
+    setPage(1);
     setNational(val);
   };
 
+  const handleScroll = () => {
+    let percentageScrolled = getScrollDownPercentage(window);
+    if (percentageScrolled > 0.9) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+    }
+  };
+
   useEffect(() => {
-    getListUsers(page, count, national).then((data) => {
-      setData(data.data);
+    getListUsers(page, national).then((getData) => {
+      window.onscroll = handleScroll;
+      setData(getData.data);
     });
-  }, [count, national, page]);
+  }, [national]);
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      setLoading(true);
+      setTimeout(() => {
+        getListUsers(page, national).then((getData) => {
+          window.onscroll = handleScroll;
+          setLoading(false);
+          setData([...data, ...getData.data]);
+        }, 850);
+      });
+    }
+  }, [page]);
 
   return (
     <Layout>
@@ -84,9 +109,7 @@ const Home = () => {
             </Row>
           </Content>
           {loading && <LoadingComponent />}
-          <Footer style={{ textAlign: "center" }}>
-            <Button onClick={onChange}>Load More</Button>
-          </Footer>
+          <Footer style={{ textAlign: "center" }} />
         </>
       </Layout>
     </Layout>

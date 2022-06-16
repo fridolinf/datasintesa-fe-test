@@ -12,7 +12,6 @@ const formatTime = "DD/MM/YYYY HH:mm:ss";
 const ListUsers = ({ userData }) => {
   const [sendOpen, setSendOpen] = useState(false);
   const [idDetail, setIdDetail] = useState(null);
-
   const detailData = userData?.find((data) => {
     return data.id.value === idDetail;
   });

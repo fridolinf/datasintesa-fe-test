@@ -48,7 +48,7 @@ const ListUsers = ({ userData }) => {
                   height={200}
                   src={data.picture.large}
                   alt={data.name.first}
-                  quality={1}
+                  quality={10}
                 />
               }
               actions={[
@@ -69,14 +69,14 @@ const ListUsers = ({ userData }) => {
               <br></br>
               <span>{moment(data.dob.date).format(formatTime)}</span>
             </Card>
-            <ModalDetailComponent
-              openModal={sendOpen}
-              closeModal={closeModals}
-              detailData={detailData}
-            />
           </Col>
         ))
       )}
+      <ModalDetailComponent
+        openModal={sendOpen}
+        closeModal={closeModals}
+        detailData={detailData}
+      />
     </>
   );
 };

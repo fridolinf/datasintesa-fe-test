@@ -20,7 +20,7 @@ const ModalDetail = ({ openModal, closeModal, detailData }) => {
             alt={detailData ? detailData.name.first : ""}
             width={100}
             height={100}
-            quality={50}
+            quality={40}
           />
         </div>
         <h1 style={{ textAlign: "center" }}>Detail Location</h1>
